@@ -1,0 +1,19 @@
+{
+  "name": "fil-space-hack",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@filecoin-shipyard/lotus-client-provider-nodejs": "^1.1.1",
+    "@filecoin-shipyard/lotus-client-rpc": "^1.2.0",
+    "@filecoin-shipyard/lotus-client-schema": "^4.2.0",
+    "multiaddr": "^9.0.1"
+  }
+}
