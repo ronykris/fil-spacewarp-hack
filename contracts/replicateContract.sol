@@ -41,7 +41,7 @@ contract ReplicationWorker {
             uint256 price = replicaIdToPrice[i];
 
             // Implementation to replicate data N times based on the user defined policy
-            // This is just a sample implementation and may not work in real-world scenarios
+            // This is just a sample implementation 
             
             //bytes memory data = abi.encodePacked(region, latency, price);
             bytes memory data = abi.encodePacked(region, price);
