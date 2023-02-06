@@ -19,5 +19,10 @@
     "dotenv": "^16.0.3",
     "filecoin.js": "^0.0.5-alpha",
     "multiaddr": "^9.0.1"
+  },
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false
   }
 }

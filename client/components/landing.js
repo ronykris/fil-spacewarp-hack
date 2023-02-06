@@ -1,8 +1,18 @@
 import React, { useEffect, useState } from "react"
-import Connect from '../components/connect.js'
-import Address from '../components/address.js'
+import { startDeal } from "../../filecoinclient"
 
-
+const connectWallet = async(onConnected) => {
+    if (!window.ethereum) {
+      alert("Get MetaMask!")
+      return
+    }
+  
+    const accounts = await window.ethereum.request({
+      method: "eth_requestAccounts",
+    })
+  
+    onConnected(accounts[0])
+  }
 
 const isWalletConnected = async(onConnected) => {
     if (window.ethereum){
@@ -25,7 +35,31 @@ const onAddressChanged = async() => {
     })
   }
 
-  
+
+const Address = ({ userAddress }) => {    
+
+    return (
+        <span className="text-xl mt-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">{userAddress.substring(0, 5)}…{userAddress.substring(userAddress.length - 4)}</span>      
+      
+    );
+  }  
+
+const Connect = ({setUserAddress}) => {
+    return (
+      <button className="items-center bg-white rounded-lg font-medium p-4 m-8 shadow-lg" onClick={() => {connectWallet(setUserAddress)}}>
+          <span>Connect Wallet</span>
+      </button>
+    )
+  }
+
+const StartDeal = () => {
+    return (
+      <button className="items-center bg-white rounded-lg font-medium p-4 m-8 shadow-lg" onClick={() => { startDeal()}}>
+          <span>Start Deal</span>
+      </button>
+    )
+}
+
 
 
 export const Landing = () => {
@@ -56,7 +90,8 @@ export const Landing = () => {
             <div>
               <div className="mb-6">
                 <span className="text-xl text-white mt-8">Connected with </span><Address userAddress={ userAddress }/>                    
-              </div>              
+              </div>
+              <StartDeal />  
             </div>
 
           ) : (            
