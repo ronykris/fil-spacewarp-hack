@@ -1,22 +1,45 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
+import Connect from '../components/connect.js'
+import Address from '../components/address.js'
 
-const connectWallet = async(onConnected) => {
-    if (!window.ethereum) {
-      alert("Get MetaMask!")
-      return
+
+
+const isWalletConnected = async(onConnected) => {
+    if (window.ethereum){
+      const accounts = await window.ethereum.request({
+        method: "eth_accounts",
+      })
+      if (accounts.length > 0) {
+        const account = accounts[0]
+        onConnected(account)
+        return
+      }
     }
+  }
   
-    const accounts = await window.ethereum.request({
-      method: "eth_requestAccounts",
+const onAddressChanged = async() => {
+    const accounts = await window.ethereum.on('accountsChanged', (accounts) => {
+      if (!accounts.length){
+        window.location.reload()
+      }
     })
-  
-    onConnected(accounts[0])
   }
 
-const Landing = () => {
+  
+
+
+export const Landing = () => {
 
     const [userAddress, setUserAddress] = useState("")
 
+    useEffect(() => {
+        isWalletConnected(setUserAddress)
+      }, [userAddress])
+    
+      
+      useEffect(() => {
+        onAddressChanged(userAddress)
+      }, [userAddress])
     
 
       return (
@@ -33,14 +56,13 @@ const Landing = () => {
             <div>
               <div className="mb-6">
                 <span className="text-xl text-white mt-8">Connected with </span><Address userAddress={ userAddress }/>                    
-              </div>
-              <Input />
+              </div>              
             </div>
 
           ) : (            
               <Connect setUserAddress={ setUserAddress }/>
           )   }
-          <Search />     
+            
       </div>
       )
 

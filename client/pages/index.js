@@ -1,12 +1,9 @@
 import React from "react";
-
-
-const connectWallet = async(onConnected) => {
-  if (!window.eth)
-}
+import Landing from '../components/landing.js'
 
 export default function index() {
   return (
     <Landing />
   );
 }
+
