@@ -14,9 +14,9 @@ const startDeal = async() => {
     const lotusClient = new LotusClient(connector)
 
     let params = { Data: {
-                        PieceCid: 'baga6ea4seaqkrzv7bvjs3gnv22pyebyyajg5ov35gkwanfqfopegozc42dopidi', 
+                        PieceCid: {'/': 'baga6ea4seaqkrzv7bvjs3gnv22pyebyyajg5ov35gkwanfqfopegozc42dopidi'}, 
                         PieceSize: 133169152, 
-                        Root: 'bafybeia6dzizisjwkqedds6j4xagxj6d3ek6ddsithpkpes4cosjboojxq', 
+                        Root: {'/': 'bafybeia6dzizisjwkqedds6j4xagxj6d3ek6ddsithpkpes4cosjboojxq'}, 
                         TransferType: "string"
                     }, 
                     DealStartEpoch: 10101, 
