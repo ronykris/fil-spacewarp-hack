@@ -20,16 +20,17 @@ const startDeal = async() => {
                         TransferType: "string"
                     }, 
                     DealStartEpoch: 10101, 
-                    EpochPrice: 0, 
+                    EpochPrice: '0', 
                     FastRetrieval: true, 
                     MinBlocksDuration: 42, 
                     Miner: 't01130', 
-                    ProviderCollateral: 0, 
+                    ProviderCollateral: '0', 
                     VerifiedDeal: true, 
                     Wallet: 't01130' 
                 }
 
-    const result = await lotusClient.client.startDeal(JSON.stringify(params))
+    //const result = await lotusClient.client.startDeal(JSON.stringify(params))
+    const result = await lotusClient.client.startDeal(params)
     console.log('result:', result)
     
    const ver = await lotusClient.common.version()
